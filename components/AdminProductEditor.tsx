@@ -140,7 +140,7 @@ export default function AdminProductEditor({
       setFormValues((current) => {
         const nextImages = [
           ...(current.images || []),
-          ...uploadedUrls.filter((url) => url && !(current.images || []).includes(url)),
+          uploadedUrls.filter((url: string) => url && !(current.images || []).includes(url))
         ];
         return {
           ...current,
