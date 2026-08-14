@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function OrderSuccess() { return <section className="section success-page"><div className="success-card"><div className="success-icon">♡</div><p className="eyebrow">THANK YOU</p><h1>Your Doro order is on its way to WhatsApp.</h1><p>Send the pre-filled message to Doro to confirm your order. We&apos;ll take it from there.</p><Link href="/shop" className="primary-button">Keep shopping</Link></div></section>; }
