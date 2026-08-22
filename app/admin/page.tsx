@@ -86,7 +86,18 @@ useEffect(() => {
     setLoading(false);
   }
 
-  useEffect(() => { if (session) { fetchProducts(); fetchOrders(); } }, [session]);
+ useEffect(() => {
+  if (!session) return;
+
+  fetchProducts();
+  fetchOrders();
+
+  const interval = setInterval(() => {
+    fetchOrders();
+  }, 10000);
+
+  return () => clearInterval(interval);
+}, [session]);
 
    if (authLoading) {
     return (
@@ -132,7 +143,22 @@ useEffect(() => {
     </div>}
 
     {view === 'orders' && <div>
-      <h2>Orders</h2>
+  <div style={{
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12
+  }}>
+    <h2>Orders</h2>
+
+    <button
+      className="secondary-button"
+      onClick={fetchOrders}
+      disabled={loading}
+    >
+      {loading ? "Refreshing..." : "↻ Refresh Orders"}
+    </button>
+  </div>
       <div className="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Total</th><th>Status</th><th>Date</th></tr></thead><tbody>{orders.map(o => <tr key={o.order_number}><td>{o.order_number}</td><td>{o.customer_name}<br/><small>{o.customer_phone}</small></td><td>₹{o.total}</td><td>{o.status}</td><td>{new Date(o.created_at).toLocaleString()}</td></tr>)}</tbody></table></div>
     </div>}
 

@@ -34,7 +34,7 @@ export default async function Home() {
         <p className="eyebrow">DORO BY SUYAM</p>
         <h1>Gifts that say what words can&apos;t.</h1>
         <p>Thoughtfully chosen jewellery, handmade art & little treasures for the people who mean the most.</p>
-        <div className="hero-buttons"><Link href="/shop" className="primary-button">Shop gifts</Link><Link href="/shop?category=Jewellery" className="secondary-button">Explore jewellery</Link></div>
+        <div className="hero-buttons"><Link href="/shop" className="primary-button">Shop gifts</Link><Link href="/customised-hamper" className="secondary-button">Customised Hamper</Link></div>
       </div>
       <div className="hero-art"><div className="hero-ribbon">a little<br/><em>something</em><br/>for you</div></div>
     </section>

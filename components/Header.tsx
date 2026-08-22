@@ -15,7 +15,7 @@ export default function Header() {
     <header className="site-header">
       <Link href="/" className="brand">
         <Image src="/logo.png" alt="Doro by Suyam" width={64} height={64} priority />
-        <div className="brand-copy"><strong className="brand-title">doro BY SUYAM</strong><small className="brand-tag">Gifts that say what words can't.</small></div>
+        <div className="brand-copy"><strong className="brand-title">DORO BY SUYAM</strong><small className="brand-tag">Gifts that make you feel connected.</small></div>
       </Link>
       <nav>
         <Link href="/">Home</Link>

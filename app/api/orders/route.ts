@@ -13,10 +13,15 @@ export async function POST(request: Request) {
     const shipping = Number(body.shipping || 0);
     const subtotal = Number(body.subtotal || 0);
     const total = Number(body.total || subtotal + shipping);
-    const supabase = getSupabaseAdmin();
+   const supabase = getSupabaseAdmin();
 
-    if (supabase) {
-      const { data: order, error } = await supabase.from("orders").insert({
+if (!supabase) {
+  throw new Error(
+    "Supabase admin client is not configured. Check SUPABASE_SERVICE_ROLE_KEY."
+  );
+}
+
+const { data: order, error } = await supabase.from("orders").insert({
         order_number: orderNumber,
         customer_name: body.customer.name,
         customer_phone: body.customer.phone,
@@ -36,7 +41,7 @@ export async function POST(request: Request) {
       }));
       const { error: itemError } = await supabase.from("order_items").insert(items);
       if (itemError) throw new Error(itemError.message);
-    }
+    
 
     const itemLines = body.items.map((x: any) => `• ${x.name} × ${x.quantity} — ₹${Number(x.price || 0) * Number(x.quantity)}`).join("\\n");
     const giftSection = body.giftMessage ? `\\n\\n*Gift message*\\n${body.giftMessage}` : "";
