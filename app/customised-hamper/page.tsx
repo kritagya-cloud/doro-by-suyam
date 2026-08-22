@@ -2,16 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Gift, Minus, Plus, Check, ShoppingBag } from "lucide-react";
-import { categories } from "@/lib/products";
+import { categories, type Product } from "@/lib/products";
 import { useCart } from "@/components/CartProvider";
 
-type Product = {
-  id: string;
-  name: string;
-  price: number | null;
-  image: string;
-  category: string;
-};
+
 
 export default function CustomisedHamperPage() {
   const { add } = useCart();
